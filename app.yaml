@@ -1,0 +1,47 @@
+cli:
+  name: My Teams CLI # change this to whathever you want
+  command: mt # set up the command used to execute this cli, we recommend that is something short
+  custom_tools_dir: . # this can be relative or absolute
+
+# List of available environments (ie: development, qa, staging, etc)
+envs:
+  development:
+    alias: d
+  qa:
+    alias: q
+
+# List of your team's tools
+tools:
+
+  # Any tool can be executed either by prompt, it's command, or it's alias
+
+  google: # this is the command
+    alias: g
+    long_name: Abrir google # if present this will be shown in the prompt
+    type: web # this is just a classifier, it's used for sorting and to define the icon
+    envs: # the envs dictionary holds the values (of any type) your action expects depending on the environment it's executing
+      '*': https://google.com
+    action: open_link # open_link is an internal tool that open a link, it expects a str as it's envs value
+
+  name:
+    alias: n
+    long_name: Ask my name
+    type: shell
+    action: ask_name # here ask_name is custom tool in the single file format (see ask_name.py)
+    envs:
+      development: dev
+      qa: qa
+
+  last-name:
+    alias: s
+    long_name: Ask my last name
+    type: shell
+    action: ask_last_name  # here ask_last_name is custom tool in the directory format (see ask_last_name/)
+    envs:
+      development:
+        some_key: some value
+        anything_you_want: 123
+      qa:
+        some_key: some other value
+        anything_you_want: 321
+
