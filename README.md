@@ -1,4 +1,6 @@
-# My Team's Tools (hexagon's template repository)
+# {{My Team's}} Tools
+
+hexagon's template repository
 
 ## Get Started
 

@@ -7,17 +7,37 @@ from hexagon.cli.args import fill_args
 from hexagon.cli.tracer import tracer
 from hexagon.cli.printer import log
 
+from typing import Any, Dict, List
 
-def main(env_values):
+
+def main(
+    tool: Dict[str, Any],
+    env: Dict[str, Any] = None,
+    env_args: Any = None,
+    cli_args: List[Any] = None,
+):
     """
     All hexagon tools must define a main function
 
-    :param env_values: the values expected to receive from tool.envs
+    :param cli_args:
+    :param env:
+    :param tool:
+    :param env_args: the values expected to receive from tool.envs
     :return:
     """
 
+    log.info('Your selected tool is:')
+    log.example(tool)
+
+    log.info('Your selected env is:')
+    log.example(env)
+
     log.info('Value in tool.envs[env_name]:')
-    log.example(env_values)
+    log.example(env_args)
+
+    if cli_args:
+        log.info('Extra command line arguments:')
+        log.example(cli_args)
 
     # for now this is the way of obtaining other execution arguments (tool name, env name, etc)
     _, _tool_name, _env_name, _my_name = fill_args(sys.argv, 4)
@@ -29,4 +49,4 @@ def main(env_values):
         validate=EmptyInputValidator("Please enter your last name.")
     ).execute())
 
-    log.result('Your last name is:', name)
+    log.result(f'Your last name is: {name}')
