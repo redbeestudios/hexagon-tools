@@ -5,9 +5,9 @@ cli:
 
 # List of available environments (ie: development, qa, staging, etc)
 envs:
-  development:
+  - name: development
     alias: d
-  qa:
+  - name: qa
     alias: q
 
 # List of your team's tools
@@ -15,7 +15,7 @@ tools:
 
   # Any tool can be executed either by prompt, it's command, or it's alias
 
-  google: # this is the command
+  - name: google # this is the command
     alias: g
     long_name: Abrir google # if present this will be shown in the prompt
     type: web # this is just a classifier, it's used for sorting and to define the icon
@@ -23,7 +23,7 @@ tools:
       '*': https://google.com
     action: open_link # open_link is an internal tool that open a link, it expects a str as it's envs value
 
-  name:
+  - name: name
     alias: n
     long_name: Ask my name
     type: shell
@@ -32,7 +32,7 @@ tools:
       development: dev
       qa: qa
 
-  last-name:
+  - name: last-name
     alias: s
     long_name: Ask my last name
     type: shell
